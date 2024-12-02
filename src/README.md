@@ -1,68 +1,73 @@
 Aventura na Mansão Abandonada
-Aventura na Mansão Abandonada é um jogo de aventura em texto, onde o jogador explora uma mansão misteriosa, coleta ferramentas e resolve enigmas para escapar. O jogo foi projetado utilizando conceitos de Programação Orientada a Objetos, como encapsulamento, herança e polimorfismo.
+Aventura na Mansão Abandonada é um jogo de aventura em texto onde o jogador explora uma mansão misteriosa, coleta ferramentas e resolve enigmas para escapar. O jogo foi desenvolvido utilizando Programação Orientada a Objetos (POO), aplicando conceitos como encapsulamento, herança e polimorfismo.
 
 Estrutura do Jogo
-O jogo possui quatro salas principais conectadas entre si:
+O jogo possui seis salas principais conectadas entre si:
 
 Hall de Entrada
 Biblioteca
 Quarto Secreto
 Sala de Jantar
-Cada sala contém objetos e/ou ferramentas que ajudam o jogador a resolver o enigma final e escapar da mansão.
-
-As interações permitem que o jogador descubra pistas e utilize ferramentas para avançar no enredo.
+Sala de Estar
+Porão
+Cada sala contém objetos e/ou ferramentas que ajudam o jogador a resolver o enigma final e escapar da mansão. Alguns itens importantes, como o Pé de Cabra e o Mapa da Saída, estão escondidos em salas específicas e devem ser usados estrategicamente para avançar na história.
 
 Instruções de Jogo
 Durante o jogo, o jogador pode usar os seguintes comandos para interagir com as salas e objetos:
 
-coletar [ferramenta]: Permite pegar uma ferramenta disponível na sala atual.
+coletar [ferramenta]
+Permite pegar uma ferramenta disponível na sala atual.
 Exemplo: coletar lanterna
 
-examinar [objeto]: Investiga um objeto específico para descobrir segredos ou pistas.
+examinar [objeto]
+Investiga um objeto específico para descobrir segredos ou pistas.
 Exemplo: examinar livro antigo
 
-inventario: Mostra a ferramenta que o jogador possui no momento.
+inventario
+Mostra a ferramenta que o jogador possui no momento.
 Exemplo: inventario
 
-mover [sala]: Desloca o jogador para uma sala conectada.
+mover [sala]
+Permite que o jogador se desloque para uma sala conectada.
 Exemplo: mover biblioteca
 
-sair: Encerra o jogo.
+sair
+Encerra o jogo.
 Exemplo: sair
 
 Mecânica do Jogo
-Exploração: Navegue pelas salas usando o comando mover para encontrar ferramentas e objetos importantes.
-Interação: Use os comandos examinar e coletar para interagir com os elementos das salas.
-Solução do Enigma: Combine ferramentas e pistas coletadas para avançar até o final do jogo.
+Exploração:
+Navegue pelas salas usando o comando mover para encontrar ferramentas e objetos importantes.
+
+Interação:
+Use os comandos examinar e coletar para interagir com elementos das salas. Objetos como o Cofre Trancado ou a Porta Trancada requerem ferramentas específicas para serem desbloqueados.
+
+Solução do Enigma:
+Combine ferramentas e pistas coletadas para desbloquear o Mapa da Saída, essencial para concluir o jogo.
+
 Exemplo de Fluxo de Jogo
 Passo a Passo:
-O jogador começa no Hall de Entrada:
-
+Comece no Hall de Entrada:
 Comando: coletar lanterna
-Move-se para a Biblioteca:
 
+Mova-se para a Biblioteca:
 Comando: mover biblioteca
-Examina o livro antigo:
 
+Examine o Livro Antigo:
 Comando: examinar livro antigo
-Move-se para o Quarto Secreto:
 
+Mova-se para o Quarto Secreto e colete a Chave Enferrujada:
 Comando: mover quarto secreto
-Coleta a chave enferrujada:
-
 Comando: coletar chave enferrujada
-Move-se para a Sala de Jantar:
 
+Mova-se para o Porão e colete o Pé de Cabra:
+Comando: mover porão
+Comando: coletar pe de cabra
+
+Use o Pé de Cabra na Sala de Estar para abrir o Cofre Trancado e obter o Mapa da Saída:
+Comando: mover sala de estar
+Comando: examinar cofre trancado
+
+Vá para a Sala de Jantar e examine o Relógio de Ouro para concluir o jogo:
 Comando: mover sala de jantar
-Examina o relógio de ouro para encontrar a chave secreta e escapar:
-
 Comando: examinar relogio de ouro
-Detalhes Técnicos
-O jogo foi implementado utilizando:
-
-JavaScript (Node.js) como linguagem principal.
-Arquitetura modular para separação de responsabilidades (salas, ferramentas, objetos, etc.).
-Conceitos de Programação Orientada a Objetos:
-Encapsulamento: Atributos privados com métodos get e set.
-Herança: Classes específicas, como Ferramenta e Objeto, derivadas de uma classe base.
-Map: Para gerenciar as conexões entre salas e itens disponíveis.
