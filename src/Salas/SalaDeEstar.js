@@ -1,5 +1,6 @@
 const Sala = require('../Sala');
-const Objeto = require('../Objeto');
+const Objeto = require('../Objetos/CofreTrancado');
+const Objeto2 = require('../Objetos/SofaVelho');
 
 class SalaDeEstar extends Sala {
   constructor(engine) {

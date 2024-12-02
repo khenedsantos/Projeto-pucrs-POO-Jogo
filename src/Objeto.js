@@ -15,13 +15,13 @@ class Objeto {
   }
 
   usar(ferramenta) {
-    // Verifica se o objeto já está desbloqueado
+    // Caso o objeto já tenha sido usado
     if (this.#acaoOk) {
       console.log(this.#descricaoDepoisAcao);
       return true;
     }
 
-    // Lógica para objetos específicos
+    // Caso o objeto precise de uma ferramenta específica
     if (this.#nome === "cofre trancado" && ferramenta?.nome === "Pé de Cabra") {
       console.log("Você usou o Pé de Cabra para abrir o cofre!");
       this.#acaoOk = true; // Marca como desbloqueado
@@ -35,9 +35,10 @@ class Objeto {
       return true;
     }
 
-    // Caso nenhuma condição seja atendida
+    // Caso o objeto não precise de ferramenta
     console.log(this.#descricaoAntesAcao);
-    return false;
+    this.#acaoOk = true; // Marca como desbloqueado após a interação
+    return true;
   }
 }
 

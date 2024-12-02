@@ -1,5 +1,5 @@
 const Sala = require('../Sala');
-const Objeto = require('../Objeto');
+const Objeto = require('../Objetos/RelogioDeOuro');
 
 class SalaDeJantar extends Sala {
   constructor(engine) {

@@ -69,13 +69,18 @@ class Engine {
   executaComando(comando) {
     const [acao, ...args] = comando.split(" ");
     const argumento = args.join(" ");
-
+  
     switch (acao) {
       case 'coletar':
         this.mochila = this.salaCorrente.pega(argumento);
         break;
       case 'examinar':
-        this.salaCorrente.usa(argumento);
+        if (this.salaCorrente.objetos.has(argumento)) {
+          const objeto = this.salaCorrente.objetos.get(argumento);
+          objeto.usar();
+        } else {
+          console.log("Objeto não encontrado na sala.");
+        }
         break;
       case 'inventario':
         console.log(`Você tem: ${this.mochila ? this.mochila.nome : 'nada'}`);
@@ -91,7 +96,7 @@ class Engine {
         console.log("Comando não reconhecido.");
     }
   }
-
+  
   jogar() {
     const prompt = require('prompt-sync')(); // Certifique-se de que o prompt-sync está instalado
     while (!this.fim) {
