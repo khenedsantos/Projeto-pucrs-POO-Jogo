@@ -1,36 +1,68 @@
-# Aventura na Mansão Abandonada
+Aventura na Mansão Abandonada
+Aventura na Mansão Abandonada é um jogo de aventura em texto, onde o jogador explora uma mansão misteriosa, coleta ferramentas e resolve enigmas para escapar. O jogo foi projetado utilizando conceitos de Programação Orientada a Objetos, como encapsulamento, herança e polimorfismo.
 
-**Aventura na Mansão Abandonada** é um jogo de aventura em texto, onde o jogador explora uma mansão misteriosa, coleta ferramentas e resolve enigmas para escapar.
+Estrutura do Jogo
+O jogo possui quatro salas principais conectadas entre si:
 
-## Estrutura do Jogo
+Hall de Entrada
+Biblioteca
+Quarto Secreto
+Sala de Jantar
+Cada sala contém objetos e/ou ferramentas que ajudam o jogador a resolver o enigma final e escapar da mansão.
 
-O jogo possui quatro salas principais:
-- **Hall de Entrada**
-- **Biblioteca**
-- **Quarto Secreto**
-- **Sala de Jantar**
+As interações permitem que o jogador descubra pistas e utilize ferramentas para avançar no enredo.
 
-Cada sala contém objetos e/ou ferramentas que ajudam o jogador a resolver o enigma final.
+Instruções de Jogo
+Durante o jogo, o jogador pode usar os seguintes comandos para interagir com as salas e objetos:
 
-## Instruções de Jogo
+coletar [ferramenta]: Permite pegar uma ferramenta disponível na sala atual.
+Exemplo: coletar lanterna
 
-O jogador pode usar os seguintes comandos durante o jogo para interagir com as salas e objetos:
+examinar [objeto]: Investiga um objeto específico para descobrir segredos ou pistas.
+Exemplo: examinar livro antigo
 
-- **coletar [ferramenta]** - Permite ao jogador pegar uma ferramenta disponível na sala atual. Exemplo: `coletar lanterna`
-- **examinar [objeto]** - Comando para investigar um objeto específico e descobrir segredos ou pistas. Exemplo: `examinar livro antigo`
-- **inventario** - Exibe a ferramenta que o jogador possui no momento, permitindo verificar o que está carregando.
-- **mover [sala]** - Permite que o jogador se desloque para uma sala conectada. Exemplo: `mover biblioteca`
-- **sair** - Encerra o jogo.
+inventario: Mostra a ferramenta que o jogador possui no momento.
+Exemplo: inventario
 
-### Exemplo de fluxo Jogo
-### Exemplo de como o jogador pode interagir com o jogo
+mover [sala]: Desloca o jogador para uma sala conectada.
+Exemplo: mover biblioteca
 
-1. O jogador começa no Hall de Entrada e digita o comando: `coletar lanterna`
-2. Depois, ele se move para a Biblioteca com o comando: `mover biblioteca`
-3. Na Biblioteca, o jogador examina o livro antigo com o comando: `examinar livro antigo`
-4. Em seguida, ele se move para o Quarto Secreto: `mover quarto secreto`
-5. No Quarto Secreto, ele coleta a chave enferrujada: `coletar chave enferrujada`
-6. O jogador então se move para a Sala de Jantar: `mover sala de jantar`
-7. Finalmente, ele examina o relógio de ouro com o comando: `examinar relogio de ouro`
+sair: Encerra o jogo.
+Exemplo: sair
 
-### Produzido por Khened Santos
+Mecânica do Jogo
+Exploração: Navegue pelas salas usando o comando mover para encontrar ferramentas e objetos importantes.
+Interação: Use os comandos examinar e coletar para interagir com os elementos das salas.
+Solução do Enigma: Combine ferramentas e pistas coletadas para avançar até o final do jogo.
+Exemplo de Fluxo de Jogo
+Passo a Passo:
+O jogador começa no Hall de Entrada:
+
+Comando: coletar lanterna
+Move-se para a Biblioteca:
+
+Comando: mover biblioteca
+Examina o livro antigo:
+
+Comando: examinar livro antigo
+Move-se para o Quarto Secreto:
+
+Comando: mover quarto secreto
+Coleta a chave enferrujada:
+
+Comando: coletar chave enferrujada
+Move-se para a Sala de Jantar:
+
+Comando: mover sala de jantar
+Examina o relógio de ouro para encontrar a chave secreta e escapar:
+
+Comando: examinar relogio de ouro
+Detalhes Técnicos
+O jogo foi implementado utilizando:
+
+JavaScript (Node.js) como linguagem principal.
+Arquitetura modular para separação de responsabilidades (salas, ferramentas, objetos, etc.).
+Conceitos de Programação Orientada a Objetos:
+Encapsulamento: Atributos privados com métodos get e set.
+Herança: Classes específicas, como Ferramenta e Objeto, derivadas de uma classe base.
+Map: Para gerenciar as conexões entre salas e itens disponíveis.

@@ -9,17 +9,18 @@ class Engine {
   }
 
   criaCenario() {
-    const HallEntrada = require('./salas/HallEntrada');
-    const Biblioteca = require('./salas/Biblioteca');
-    const QuartoSecreto = require('./salas/QuartoSecreto');
-    const SalaDeJantar = require('./salas/SalaDeJantar');
-  
-    // Criando as salas
+    // Caminhos corrigidos para as salas
+    const HallEntrada = require('./Salas/HallEntrada');
+    const Biblioteca = require('./Salas/Biblioteca');
+    const QuartoSecreto = require('./Salas/QuartoSecreto');
+    const SalaDeJantar = require('./Salas/SalaDeJantar');
+
+    // Instanciando as salas
     this.hallEntrada = new HallEntrada(this);
     this.biblioteca = new Biblioteca(this);
     this.quartoSecreto = new QuartoSecreto(this);
     this.salaDeJantar = new SalaDeJantar(this);
-  
+
     // Conectando as salas
     this.hallEntrada.addPorta('biblioteca', this.biblioteca);
     this.biblioteca.addPorta('hall entrada', this.hallEntrada);
@@ -27,14 +28,11 @@ class Engine {
     this.biblioteca.addPorta('sala de jantar', this.salaDeJantar);
     this.quartoSecreto.addPorta('biblioteca', this.biblioteca);
     this.salaDeJantar.addPorta('biblioteca', this.biblioteca);
-    // Conectando Quarto Secreto com Sala de Jantar
-    this.quartoSecreto.addPorta('sala de jantar', this.salaDeJantar);
-    this.salaDeJantar.addPorta('quarto secreto', this.quartoSecreto);
-  
+
     // Definindo a sala inicial
     this.salaCorrente = this.hallEntrada;
   }
-  
+
   executaComando(comando) {
     const [acao, ...args] = comando.split(" ");
     const argumento = args.join(" ");
@@ -62,9 +60,9 @@ class Engine {
   }
 
   jogar() {
-    const prompt = require('prompt-sync')();
+    const prompt = require('prompt-sync')(); // Certifique-se de que o prompt-sync está instalado
     while (!this.fim) {
-      console.log(`\nVocê foi para ${this.salaCorrente.nome}`);
+      console.log(`\nVocê está na sala: ${this.salaCorrente.nome}`);
       const comando = prompt("O que deseja fazer? ");
       this.executaComando(comando);
     }
