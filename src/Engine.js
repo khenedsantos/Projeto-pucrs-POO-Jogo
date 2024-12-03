@@ -65,12 +65,11 @@ class Engine {
     // Definindo a sala inicial
     this.salaCorrente = this.hallEntrada;
   }
-  
 
   executaComando(comando) {
     const [acao, ...args] = comando.split(" ");
     const argumento = args.join(" ");
-  
+
     switch (acao) {
       case 'coletar':
         if (this.salaCorrente.ferramentas.has(argumento)) {
@@ -81,59 +80,46 @@ class Engine {
           console.log("Ferramenta não encontrada na sala.");
         }
         break;
-  
-        case 'examinar':
-          if (this.salaCorrente.objetos.has(argumento)) {
-            const objeto = this.salaCorrente.objetos.get(argumento);
-            objeto.usar(this.mochila); // Exibe as mensagens apropriadas
-          } else {
-            console.log("Objeto não encontrado na sala.");
-          }
-          break;        
-        
-  
+
+      case 'examinar':
+        if (this.salaCorrente.objetos.has(argumento)) {
+          this.salaCorrente.usarObjeto(argumento);
+        } else {
+          console.log("Objeto não encontrado na sala.");
+        }
+        break;
+
       case 'inventario':
         console.log(`Você tem: ${this.mochila ? this.mochila.nome : 'nada'}`);
         break;
-  
+
       case 'mover':
-        const novaSala = this.salaCorrente.sai(argumento);
-        this.salaCorrente = novaSala;
-        
-        // Chama o método `entrar`, se existir, na nova sala
-        if (typeof novaSala.entrar === "function") {
-            novaSala.entrar();
-        }
-        break;        
-  
+        this.salaCorrente = this.salaCorrente.sai(argumento);
+        break;
+
       case 'sair':
         this.fim = true;
         console.log("Jogo encerrado.");
         break;
-  
+
       default:
         console.log("Comando não reconhecido.");
     }
-  }  
-  
+  }
+
   jogar() {
     const prompt = require('prompt-sync')();
 
-    // Mensagem de boas-vindas com quebras de linha para legibilidade
-    console.log("Bem-vindo à Aventura na Mansão Abandonada!\n");
-    console.log("Você está preso em uma mansão misteriosa. Para sair, será necessário:");
-    console.log("- Explorar as salas");
-    console.log("- Seguir as pistas");
-    console.log("- Usar as ferramentas corretamente.\n");
+    console.log("Bem-vindo à Aventura na Mansão Abandonada!");
+    console.log("Explore as salas, siga as pistas e escape desta mansão misteriosa!\n");
     console.log("Boa sorte!\n");
 
     while (!this.fim) {
       console.log(`\nVocê está na sala: ${this.salaCorrente.nome}`);
-      
-      // Exibe a mensagem apenas na primeira vez no Hall de Entrada
+
       if (this.salaCorrente.nome === "Hall de Entrada" && !this.mensagemInicialHallEntradaExibida) {
         console.log("Há uma lanterna velha no chão.\n");
-        this.mensagemInicialHallEntradaExibida = true; // Marca como exibida
+        this.mensagemInicialHallEntradaExibida = true;
       }
 
       const comando = prompt("O que deseja fazer? ");
