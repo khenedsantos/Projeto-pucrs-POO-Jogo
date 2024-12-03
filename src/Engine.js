@@ -5,6 +5,7 @@ class Engine {
     this.mochila = null;
     this.salaCorrente = null;
     this.fim = false;
+    this.mensagemInicialHallEntradaExibida = false; // Variável para controlar a exibição da mensagem
     this.criaCenario();
   }
 
@@ -72,35 +73,69 @@ class Engine {
   
     switch (acao) {
       case 'coletar':
-        this.mochila = this.salaCorrente.pega(argumento);
+        if (this.salaCorrente.ferramentas.has(argumento)) {
+          this.mochila = this.salaCorrente.ferramentas.get(argumento);
+          this.salaCorrente.ferramentas.delete(argumento);
+          console.log(`Você coletou: ${this.mochila.nome}`);
+        } else {
+          console.log("Ferramenta não encontrada na sala.");
+        }
         break;
+  
       case 'examinar':
         if (this.salaCorrente.objetos.has(argumento)) {
           const objeto = this.salaCorrente.objetos.get(argumento);
-          objeto.usar();
-        } else {
-          console.log("Objeto não encontrado na sala.");
+          objeto.usar(this.mochila); // Passa a ferramenta para o método usar
+        } 
+        else {
+            console.log("Objeto não encontrado na sala.");
         }
-        break;
+          break;        
+  
       case 'inventario':
         console.log(`Você tem: ${this.mochila ? this.mochila.nome : 'nada'}`);
         break;
+  
       case 'mover':
-        this.salaCorrente = this.salaCorrente.sai(argumento);
-        break;
+        const novaSala = this.salaCorrente.sai(argumento);
+        this.salaCorrente = novaSala;
+        
+        // Chama o método `entrar`, se existir, na nova sala
+        if (typeof novaSala.entrar === "function") {
+            novaSala.entrar();
+        }
+        break;        
+  
       case 'sair':
         this.fim = true;
         console.log("Jogo encerrado.");
         break;
+  
       default:
         console.log("Comando não reconhecido.");
     }
-  }
+  }  
   
   jogar() {
-    const prompt = require('prompt-sync')(); // Certifique-se de que o prompt-sync está instalado
+    const prompt = require('prompt-sync')();
+
+    // Mensagem de boas-vindas com quebras de linha para legibilidade
+    console.log("Bem-vindo à Aventura na Mansão Abandonada!\n");
+    console.log("Você está preso em uma mansão misteriosa. Para sair, será necessário:");
+    console.log("- Explorar as salas");
+    console.log("- Seguir as pistas");
+    console.log("- Usar as ferramentas corretamente.\n");
+    console.log("Boa sorte!\n");
+
     while (!this.fim) {
       console.log(`\nVocê está na sala: ${this.salaCorrente.nome}`);
+      
+      // Exibe a mensagem apenas na primeira vez no Hall de Entrada
+      if (this.salaCorrente.nome === "Hall de Entrada" && !this.mensagemInicialHallEntradaExibida) {
+        console.log("Há uma lanterna velha no chão.\n");
+        this.mensagemInicialHallEntradaExibida = true; // Marca como exibida
+      }
+
       const comando = prompt("O que deseja fazer? ");
       this.executaComando(comando);
     }
