@@ -82,15 +82,15 @@ class Engine {
         }
         break;
   
-      case 'examinar':
-        if (this.salaCorrente.objetos.has(argumento)) {
-          const objeto = this.salaCorrente.objetos.get(argumento);
-          objeto.usar(this.mochila); // Passa a ferramenta para o método usar
-        } 
-        else {
+        case 'examinar':
+          if (this.salaCorrente.objetos.has(argumento)) {
+            const objeto = this.salaCorrente.objetos.get(argumento);
+            objeto.usar(this.mochila); // Exibe as mensagens apropriadas
+          } else {
             console.log("Objeto não encontrado na sala.");
-        }
+          }
           break;        
+        
   
       case 'inventario':
         console.log(`Você tem: ${this.mochila ? this.mochila.nome : 'nada'}`);

@@ -10,7 +10,7 @@ class QuartoSecreto extends Sala {
     // Adiciona o Baú Misterioso como objeto inicial
     this.objetos.set("bau misterioso", new Objeto(
       "Baú Misterioso",
-      "Você encontrou uma Chave Enferrujada dentro do baú.",
+      "O baú contém uma Chave Enferrujada.",
       "O baú já foi aberto e está vazio."
     ));
 
@@ -25,6 +25,7 @@ class QuartoSecreto extends Sala {
     ));
   }
 
+  // Método para gerenciar mensagens ao entrar na sala
   entrar() {
     if (!this.mensagemBauExibida) {
       console.log("Há um baú misterioso no quarto. Abra o baú.");
@@ -32,6 +33,7 @@ class QuartoSecreto extends Sala {
     }
   }
 
+  // Método para usar objetos específicos no Quarto Secreto
   usarObjeto(nome, ferramenta) {
     const objeto = this.objetos.get(nome);
 
